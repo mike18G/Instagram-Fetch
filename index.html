@@ -1,0 +1,35 @@
+<html>
+   <head>
+      <title>Instagram Fetch</title>
+      <script>
+         const url = 'https://www.instagram.com/cinepolismx/?__a=1';
+         const instagram = fetch(url);
+         var user, bio;
+         var cap = [], like = [];
+         var x = 0;
+         instagram.then(data => data.json())
+         .then(data => {
+           const post = [...data.user.media.nodes];
+           const postUser = data.user;
+           bio = postUser.biography;
+           user = postUser.username;
+           console.log(user);
+           console.log(bio);
+           post.forEach(post => {
+              cap[x] = post.caption;
+              like[x] = post.likes;
+              x++;
+           });
+           console.log(cap);
+           console.log(like);
+           like.sort(function(a, b) {
+              return a - b;
+           });
+           console.log(like);
+         })
+      </script>
+   </head>
+   <body>
+
+   </body>
+</html>
